@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 import json
 from .models import *
 from django.contrib.auth.decorators import login_required
+from django.core.files.storage import FileSystemStorage
 # Create your views here.
 
 
@@ -27,3 +28,24 @@ def login_view(request):
             return render(request, "neatfly/login.html", {
                 "message": "Invalid username and/or password."
             })
+
+
+def register_view(request):
+    if request.method == "POST":
+        pfp = request.FILES["picture"]
+        fs = FileSystemStorage()
+        name = fs.save(pfp.name, pfp)
+        url = fs.url(name)
+        print(url)
+        username = request.POST["username"]
+        password = request.POST["password"]
+        email = request.POST["email"]
+        try:
+            user = User.objects.create_user(username=username, email=email, password=password, picture=url)
+        except:
+            return JsonResponse({
+                "message": "error occurred while saving your profile"
+            })
+        return HttpResponse(user.picture)
+    elif request.method == "GET":
+        return render(request, "neatfly/register.html")

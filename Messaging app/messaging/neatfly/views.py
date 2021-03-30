@@ -15,7 +15,7 @@ def index(request):
 
 def login_view(request):
     if request.method == "GET":
-        return render(request, "neatfly/login.html")
+        return render(request, "neatfly/login_view.html")
     elif request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
@@ -48,4 +48,6 @@ def register_view(request):
             })
         return HttpResponse(user.picture)
     elif request.method == "GET":
-        return render(request, "neatfly/register.html")
+        return render(request, "neatfly/signup_view.html")
+
+

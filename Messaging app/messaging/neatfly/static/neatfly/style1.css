@@ -1,0 +1,48 @@
+#login{
+  display: block;
+  background-color: rgb(192, 192, 192);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 70px;
+  width: 350px;
+  height: 400px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  border-radius: 5%;
+  object-position: center;
+  align-content: center;
+}
+.title{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  height: fit-content;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.boxtitle{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  width: fit-content;
+  height: fit-content;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.input{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  height: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.submit{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70px;
+  height: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}

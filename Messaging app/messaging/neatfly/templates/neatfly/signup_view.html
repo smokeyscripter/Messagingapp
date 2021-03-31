@@ -78,8 +78,7 @@
             <h1 class=title>Signup page</h1>
             <div id=login>
                 
-            <form>
-            
+            <form method="post" enctype="multipart/form-data">
             <label for="fname" class=boxtitle>Username:</label>
             <input type="text" id="username" name="username" class=input  value={{request.form.username}}><br><br>
 
@@ -87,11 +86,11 @@
             <input type="text" id="email" name="email" class=input  value={{request.form.email}}><br><br>
 
             <label for="lname" class=boxtitle>Password:</label>
-            <input type="text" id="password" name="password" class=input  value={{request.form.password}}><br><br>
+            <input type="text" id="password" name="password1" class=input  value={{request.form.password}}><br><br>
 
             <label for="lname" class=boxtitle>Type the same password again :</label>
             <input type="text" id="password2" name="password2" class=input  value={{request.form.password2}}><br><br>
-            
+            <input type="file" name="picture">
             <input type="submit" value="Signup" class=submit> 
             
             <p class=boxtitle>Already have an account? <a href="{% url 'login' %}">Login!</a></p>

@@ -40,18 +40,14 @@ def signup_view(request):
         username = request.POST["username"]
         password1 = request.POST["password1"]
         password2 = request.POST["password2"]
+        print(password1)
         is_secure = True #for now
         email = request.POST["email"]
-        if is_secure:
-            try:
-                user = User.objects.create_user(username=username, email=email, password=password1, picture=url)
-            except:
-                return JsonResponse({
-                    "message": "error occurred while saving your profile"
-                })
-        else: return JsonResponse({
-            "message": "Your password is not secure enough."
-        })
+        user = User.objects.create_user(username=username, email=email, password=password1, picture=url)
+        if not is_secure:
+            return HttpResponse({
+                "message": "Your password is not secure enough."
+            })
         return HttpResponse(user.picture)
     elif request.method == "GET":
         return render(request, "neatfly/signup_view.html")

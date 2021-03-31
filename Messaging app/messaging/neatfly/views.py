@@ -30,7 +30,7 @@ def login_view(request):
             })
 
 
-def register_view(request):
+def signup_view(request):
     if request.method == "POST":
         pfp = request.FILES["picture"]
         fs = FileSystemStorage()
@@ -38,16 +38,23 @@ def register_view(request):
         url = fs.url(name)
         print(url)
         username = request.POST["username"]
-        password = request.POST["password"]
+        password1 = request.POST["password1"]
+        password2 = request.POST["password2"]
+        is_secure = validate(password1)
         email = request.POST["email"]
-        try:
-            user = User.objects.create_user(username=username, email=email, password=password, picture=url)
-        except:
-            return JsonResponse({
-                "message": "error occurred while saving your profile"
-            })
+        if is_secure:
+            try:
+                user = User.objects.create_user(username=username, email=email, password=password1, picture=url)
+            except:
+                return JsonResponse({
+                    "message": "error occurred while saving your profile"
+                })
+        else: return JsonResponse({
+            "message": "Your password is not secure enough."
+        })
         return HttpResponse(user.picture)
     elif request.method == "GET":
         return render(request, "neatfly/signup_view.html")
 
-
+def validate(password):
+    pass

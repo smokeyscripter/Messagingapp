@@ -4,7 +4,7 @@ from . import views
 def root(request):
     return HttpResponseRedirect("/home")
 urlpatterns = [
-    path("", views.index, name="index"),
-    path("login/", views.login_view),
-    path("register/", views.register_view)
+    path("", views.index, name="home"),
+    path("login/", views.login_view, name="login"),
+    path("register/", views.signup_view, name="signup")
 ]

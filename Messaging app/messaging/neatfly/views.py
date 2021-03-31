@@ -7,8 +7,7 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
 # Create your views here.
-
-
+from .util import hash
 def index(request):
     return render(request, "neatfly/index.html")
 
@@ -33,8 +32,9 @@ def login_view(request):
 def signup_view(request):
     if request.method == "POST":
         pfp = request.FILES["picture"]
+        name = hash(pfp.name[:len(pfp.name)-4]) + pfp.name[len(pfp.name)-4:]
         fs = FileSystemStorage()
-        name = fs.save(pfp.name, pfp)
+        name = fs.save(name, pfp)
         url = fs.url(name)
         print(url)
         username = request.POST["username"]
